@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/chatstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <style>
+       #botText_div{
+            position:relative;
+           left:83px;
+           top:-71px;
+           border-radius: 10px;
+           background-color:#30c4cc;
+
+        }
+
+       body{
+
+background-color:#deeae8;
+       }
+          .box{
+              background-color: white;
+              position:relative;
+              right:-400px;
+              bottom:-50px;
+              display:none;
+              box-shadow: 0px 0px 8px #226468;
+              margin-top:-20px;
+               height:500px;
+               padding:0px;
+              border-radius: 7px;
+
+
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+
+          }
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+
+          #userInput{
+              position:relative;
+              bottom: -450px;
+
+          }
+
+          #message{
+
+              overflow:auto;
+              height:330px;
+               widht:400px;
+
+
+              display: flex;
+  flex-direction: column-reverse;
+          }
+
+          #buttonInput{
+              position:relative;
+              left:50px;
+          }
+
+    #but{
+         background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+    }
+
+          #usertext{
+              max-width: 60px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+              margin-right:300px;
+          }
+
+          #livechat-compact-container {
+  height: 153px;
+  position: fixed;
+  right: 0;
+  top: 200px;
+  top: 30vh;
+  z-index: 10000;
+}
+.btn-chat button {
+
+  font-family: arial;
+  color: #fff;
+  text-decoration: none;
+  background: #1798F7;
+  padding: 24px 20px 8px;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 0 0 1px #03b2ff inset;
+  border: 1px solid #144866;
+  border-radius: 2px;
+  -ms-transform: rotate(90deg) translate(0, -20px);
+  -webkit-transform: rotate(90deg) translate(0, -20px);
+  transform: rotate(90deg) translate(0, -20px);
+  position: relative;
+  right: -27px;
+  transition: background 0.2s, right 0.2s;
+}
+.btn-chat button:hover {
+  background: #47B6F5;
+  right: -20px;
+  transition: background 0.2s, right 0.2s;
+}
+.close{
+    margin-left: 515px;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    cursor:pointer;
+
+
+}
+
+          .bot-photo{
+              background-image: url(https://www.tinkerbots.com/wp-content/uploads/2017/08/myfirst.jpg);
+               background-size: cover;
+              box-shadow: 0px 0px 10px #b1b2b5;
+              background-position: center;
+          }
+
+          .user-photo{
+              background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/PewDiePie_at_PAX_2015_crop.jpg/179px-PewDiePie_at_PAX_2015_crop.jpg);
+               background-size: cover;
+              box-shadow: 0px 0px 10px #b1b2b5;
+              background-position: center;
+
+
+          }
+          #buttonInput{
+
+          }
+      </style>
+  </head>
+  <body>
+
+<div class="btn-chat" id="livechat-compact-container" style="visibility: visible; opacity: 1;">
+	<div class="btn-holder">
+		<button  id="but" onclick="hi()" class="link">Live Chat</button>
+	</div>
+</div>
+<script>
+    function closing() {
+        document.getElementById('id01').style.display = 'none';
+        document.getElementById('livechat-compact-container').style.display='block';
+    }
+</script>
+
+
+
+<script>
+    function hi(){
+        document.getElementById('id01').style.display='block';
+document.getElementById('livechat-compact-container').style.display='none';
+
+    }
+</script>
+
+
+<script>
+$("#buttonInput").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#message").offset().top},
+        'slow');
+});
+</script>
+
+
+    <div class="box" id="id01">
+        <span onclick="closing()" class="close" title="Close Modal">&times;</span>
+         <div id="userInput">
+        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="buttonInput" type="submit" value="Send">
+      </div>
+        <div id="message">
+      <div id="chatbox">
+          <div class="bot-photo"></div>
+        <p class="botText" style="color:blue" ><span>Hi! I'm Medbot.</span></p>
+      </div>
+
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<div class="user-photo"></div><div id="usertext" style="display:block;margin-left:auto;margin-top:-65px;margin-right:-136px;min-width:120px;width:auto;padding-left:0px; background-color:lightblue;border-radius:10px; padding:0px;max-height:400px;"><p class="userText" style="color:blue;max-height:400px;word-wrap: break-word; text-align:right; word-wrap: max-height:100px; break-word; padding:7px">' + rawText + '</p></div>';
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<div class="bot-photo" style="position:relative;left:10px;top:-12px;"></div><div id="botText_div"><p class="botText"><span style = "color:white;">' + data + '</span></p></div>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+         });
+        }
+        $("#textInput").keypress(function(e) {
+            if(e.which == 13) {
+                getBotResponse();
+            }
+        });
+        $("#buttonInput").click(function() {
+          getBotResponse();
+        })
+      </script>
+        </div>
+
+
+
+    </div>
+  </body>
+</html>
